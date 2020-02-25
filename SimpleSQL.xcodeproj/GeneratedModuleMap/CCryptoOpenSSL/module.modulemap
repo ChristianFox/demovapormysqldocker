@@ -1,0 +1,4 @@
+module CCryptoOpenSSL {
+    umbrella "/Volumes/Storage/_Dev - Study/DockerAndSwift/SimpleSQL/.build/checkouts/crypto/Sources/CCryptoOpenSSL/include"
+    export *
+}

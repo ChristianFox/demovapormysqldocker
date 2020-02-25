@@ -1,0 +1,41 @@
+version: "2.4"
+services:
+  api:
+    image: dockswift20
+    ports:
+      - 80:8080
+    environment:
+      MYSQL_HOST: db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_DATABASE: dbname
+      SLEEP_LENGTH: 8
+      MYSQL_PORT: 3309
+    depends_on:
+      - db
+    # command: mysql -uroot -ppassword -hdb thedb
+      # db:
+      #   condition: service_healthy
+    # command: service mysql start
+  # admin:
+  #   image: adminer
+  #   ports:
+  #     - 8080:8080
+  db:
+    image: mysql:8.0.1
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: dbname
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - "3309:3306"
+    # volumes:
+    # - ./db.sql:/docker-entrypoint-initdb.d/init.sql
+    # healthcheck:
+    #   test: "/usr/bin/mysql --user=root --password=password --execute \"SHOW DATABASES;\""
+    #   # test: "/usr/local/mysql/bin/mysql --user=foo --password=foo --execute \"SHOW DATABASES;\""
+    #   interval: 3s
+    #   timeout: 1s
+    #   retries: 5
+
